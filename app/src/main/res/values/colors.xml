@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="vp_primary_color">#FF9500</color>
+    <color name="vp_color_white">#ffffff</color>
+    <color name="vp_color_gray">#969696</color>
+    <color name="sc_tundora">#454545</color>
+
+    <color name="vp_button_disabled">@color/vp_color_gray</color>
+    <color name="vp_button_pressed">@color/colorPrimaryDark</color>
+    <color name="vp_button_base">@color/colorPrimary</color>
+</resources>

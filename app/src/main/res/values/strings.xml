@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ElPassion</string>
+
+    <string name="vp_results">Results</string>
+    <string name="vp_details">Details</string>
+    <string name="vp_products_general_error">An Error Occurred While Loading Data!</string>
+    <string name="vp_common_retry">Retry</string>
+
+
+    <string name="vp_common_code">Product Code:</string>
+    <string name="vp_common_currency">Currency:</string>
+    <string name="vp_common_name">Name:</string>
+    <string name="vp_common_price">Price:</string>
+</resources>

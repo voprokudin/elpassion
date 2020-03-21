@@ -1,0 +1,3 @@
+package p.vasylprokudin.elpassion.data.rest
+
+interface VPGitHubRepositoriesService

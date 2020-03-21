@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="vp_margin_post_large">48dp</dimen>
+    <dimen name="vp_margin_large">32dp</dimen>
+    <dimen name="vp_margin_post_medium">24dp</dimen>
+    <dimen name="vp_margin_medium">16dp</dimen>
+    <dimen name="vp_margin_pre_medium">12dp</dimen>
+    <dimen name="vp_margin_post_small">10dp</dimen>
+    <dimen name="vp_margin_small">8dp</dimen>
+    <dimen name="vp_margin_pre_small">6dp</dimen>
+    <dimen name="vp_margin_tiny">4dp</dimen>
+    <dimen name="vp_margin_mini">2dp</dimen>
+    <dimen name="vp_margin_none">0dp</dimen>
+
+    <dimen name="vp_text_size_medium">16sp</dimen>
+    <dimen name="vp_text_size_large">18sp</dimen>
+
+<!-- content -->
+    <dimen name="vp_default_button_text_size">15sp</dimen>
+    <dimen name="vp_default_button_height">48dp</dimen>
+    <dimen name="vp_corners_radius">2dp</dimen>
+
+    <dimen name="vp_list_item_height">56dp</dimen>
+<!-- content -->
+
+</resources>
