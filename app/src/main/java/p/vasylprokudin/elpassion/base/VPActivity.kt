@@ -7,7 +7,6 @@ import androidx.appcompat.app.ActionBar
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.vp_toolbar.toolbar
 import kotlinx.android.synthetic.main.vp_toolbar.toolbarProgressBar
-import p.vasylprokudin.elpassion.R
 
 abstract class VPActivity : DaggerAppCompatActivity() {
 
@@ -22,8 +21,8 @@ abstract class VPActivity : DaggerAppCompatActivity() {
 
     private fun initActionBar() {
         setSupportActionBar(toolbar)
-        setToolbarNavigationIcon(R.drawable.ic_back)
-        toolbar?.setNavigationOnClickListener { onToolbarNavigateUp() }
+//        setToolbarNavigationIcon(R.drawable.ic_back)
+//        toolbar?.setNavigationOnClickListener { onToolbarNavigateUp() }
         configureActionBar(supportActionBar)
         hideProgressBar()
     }
