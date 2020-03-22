@@ -16,6 +16,9 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <include
+        layout="@layout/layout_search"/>
+
+    <include
         android:id="@+id/emptyView"
         layout="@layout/vp_layout_empty_view"
         android:visibility="gone"/>
