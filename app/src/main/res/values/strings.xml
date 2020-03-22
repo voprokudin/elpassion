@@ -5,4 +5,5 @@
     <string name="vp_cant_download_dialog_message">Can\'t download data because of error:\n%s\nCheck your internet connection.</string>
     <string name="vp_cant_download_dialog_btn_positive">Try again</string>
     <string name="vp_cant_download_dialog_btn_negative">Close</string>
+    <string name="vp_empty_list">No items to show…</string>
 </resources>

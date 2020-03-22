@@ -12,5 +12,5 @@ class VPGetRepositoriesUseCase
 ) : VPSingleUseCase<VPRawRepositories, Unit>() {
 
     override fun buildUseCaseSingle(params: Unit?): Single<VPRawRepositories> =
-        gitHubRepositoriesRemoteRepository.getRepositories("ababababababa")
+        gitHubRepositoriesRemoteRepository.getRepositories("ababababababada")
 }

@@ -29,7 +29,7 @@ class VPHomeViewModel
 
     internal inner class GetGitHubRepositoriesObserver : VPEmptySingleObserver<VPRawRepositories>() {
         override fun onSuccess(result: VPRawRepositories) {
-            mutableScreenState.value = ScreenState.ShowRepositoriesListFragment
+            mutableScreenState.value = ScreenState.MaybeShowRepositoriesListFragment(result)
         }
 
         override fun onError(throwable: Throwable) {
@@ -38,7 +38,7 @@ class VPHomeViewModel
     }
 
     sealed class ScreenState {
-        object ShowRepositoriesListFragment : ScreenState()
+        class MaybeShowRepositoriesListFragment(val result: VPRawRepositories) : ScreenState()
         object DisableView : ScreenState()
         class ShowGeneralError(val errorMessage: String?) : ScreenState()
     }
