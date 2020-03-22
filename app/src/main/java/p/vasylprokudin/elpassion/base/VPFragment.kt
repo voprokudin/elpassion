@@ -23,12 +23,8 @@ abstract class VPFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(getLayoutResId, container, false)
 
-    fun showProgressBar() {
-        getVPActivity().showProgressBar()
-    }
-
-    fun hideProgressBar() {
-        getVPActivity().hideProgressBar()
+    fun progressBarVisibility(visible: Boolean) {
+        getVPActivity().progressBarVisibility(visible)
     }
 
     fun setToolbarNavigationIcon(@DrawableRes iconResId: Int?) {

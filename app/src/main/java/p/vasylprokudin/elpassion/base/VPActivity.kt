@@ -24,7 +24,7 @@ abstract class VPActivity : DaggerAppCompatActivity() {
 //        setToolbarNavigationIcon(R.drawable.ic_back)
 //        toolbar?.setNavigationOnClickListener { onToolbarNavigateUp() }
         configureActionBar(supportActionBar)
-        hideProgressBar()
+        progressBarVisibility(visible = false)
     }
 
     private fun configureActionBar(actionBar: ActionBar?) {
@@ -35,12 +35,8 @@ abstract class VPActivity : DaggerAppCompatActivity() {
         onBackPressed()
     }
 
-    fun showProgressBar() {
-        toolbarProgressBar.visibility = View.VISIBLE
-    }
-
-    fun hideProgressBar() {
-        toolbarProgressBar.visibility = View.GONE
+    fun progressBarVisibility(visible: Boolean) {
+        toolbarProgressBar.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
     fun setToolbarNavigationIcon(@DrawableRes iconResId: Int?) {
