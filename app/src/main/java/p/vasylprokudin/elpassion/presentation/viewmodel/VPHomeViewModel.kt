@@ -19,12 +19,12 @@ class VPHomeViewModel
 
     private val mutableScreenState = MutableLiveData<ScreenState>()
 
-    fun maybeFetchRepositories() {
-        if (networkStateProvider.isNetworkConnected()) fetchRepositories() else mutableScreenState.value = ScreenState.DisableView
+    fun maybeFetchRepositories(query: String) {
+        if (networkStateProvider.isNetworkConnected()) fetchRepositories(query) else mutableScreenState.value = ScreenState.DisableView
     }
 
-    private fun fetchRepositories() {
-        getRepositoriesUseCase.execute(observer = GetGitHubRepositoriesObserver())
+    private fun fetchRepositories(query: String) {
+        getRepositoriesUseCase.execute(observer = GetGitHubRepositoriesObserver(), params = query)
     }
 
     internal inner class GetGitHubRepositoriesObserver : VPEmptySingleObserver<VPRawRepositories>() {

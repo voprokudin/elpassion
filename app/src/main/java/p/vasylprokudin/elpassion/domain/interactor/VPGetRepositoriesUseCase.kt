@@ -9,8 +9,11 @@ import javax.inject.Inject
 class VPGetRepositoriesUseCase
 @Inject constructor(
     private val gitHubRepositoriesRemoteRepository: VPGitHubRepositoriesRemoteRepository
-) : VPSingleUseCase<VPRawRepositories, Unit>() {
+) : VPSingleUseCase<VPRawRepositories, String>() {
 
-    override fun buildUseCaseSingle(params: Unit?): Single<VPRawRepositories> =
-        gitHubRepositoriesRemoteRepository.getRepositories("ababababababada")
+    override fun buildUseCaseSingle(params: String?): Single<VPRawRepositories> {
+        params ?: return Single.error(IllegalStateException("search query must be provided"))
+
+        return gitHubRepositoriesRemoteRepository.getRepositories(params)
+    }
 }
