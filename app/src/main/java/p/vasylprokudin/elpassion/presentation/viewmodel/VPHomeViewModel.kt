@@ -19,6 +19,10 @@ class VPHomeViewModel
 
     private val mutableScreenState = MutableLiveData<ScreenState>()
 
+    val repositoriesInfoList: LiveData<VPRawRepositories> by lazy { mutableRepositoriesInfoList }
+
+    private val mutableRepositoriesInfoList = MutableLiveData<VPRawRepositories>()
+
     fun maybeFetchRepositories(query: String) {
         if (networkStateProvider.isNetworkConnected()) fetchRepositories(query) else mutableScreenState.value = ScreenState.DisableView
     }
@@ -29,6 +33,7 @@ class VPHomeViewModel
 
     internal inner class GetGitHubRepositoriesObserver : VPEmptySingleObserver<VPRawRepositories>() {
         override fun onSuccess(result: VPRawRepositories) {
+            mutableRepositoriesInfoList.value = result
             mutableScreenState.value = ScreenState.MaybeShowRepositoriesListFragment(result)
         }
 

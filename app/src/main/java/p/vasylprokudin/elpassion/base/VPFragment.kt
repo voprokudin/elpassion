@@ -24,16 +24,16 @@ abstract class VPFragment : DaggerFragment() {
     ): View? = inflater.inflate(getLayoutResId, container, false)
 
     fun progressBarVisibility(visible: Boolean) {
-        getVPActivity().progressBarVisibility(visible)
+        vpActivity().progressBarVisibility(visible)
     }
 
     fun setToolbarNavigationIcon(@DrawableRes iconResId: Int?) {
-        getVPActivity().setToolbarNavigationIcon(iconResId)
+        vpActivity().setToolbarNavigationIcon(iconResId)
     }
 
     fun setToolbarTitle(@StringRes titleId: Int) {
-        getVPActivity().setToolbarTitle(titleId)
+        vpActivity().setToolbarTitle(titleId)
     }
 
-    private fun getVPActivity(): VPActivity = (activity as VPActivity)
+    fun vpActivity(): VPActivity = (activity as VPActivity)
 }

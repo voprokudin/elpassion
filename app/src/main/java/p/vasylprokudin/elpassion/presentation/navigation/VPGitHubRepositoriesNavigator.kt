@@ -23,12 +23,12 @@ class VPGitHubRepositoriesNavigator
 
     private val fragmentManager: FragmentManager by lazy { activity.supportFragmentManager }
 
-    fun showGitHubRepositoriesListFragment(result: VPRawRepositories) {
+    fun showGitHubRepositoriesListFragment() {
         if (isFragmentAlreadyShown<VPGitHubRepositoriesListFragment>()) return
 
         fragmentUtil.replaceFragmentAllowingStateLoss(
             fragmentManager = fragmentManager,
-            fragment = VPGitHubRepositoriesListFragment.newInstance(result),
+            fragment = VPGitHubRepositoriesListFragment.newInstance(),
             containerViewId = FRAGMENT_CONTAINER,
             addToBackStack = false
         )

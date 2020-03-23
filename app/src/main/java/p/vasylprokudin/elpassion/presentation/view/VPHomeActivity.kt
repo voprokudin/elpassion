@@ -92,11 +92,11 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
         val repositories = result.items
         emptyView.visibility = repositories.isEmpty().toVisibleGone()
         progressBarVisibility(visible = false)
-        if (repositories.isNotEmpty()) showRepositoriesListFragment(result)
+        if (repositories.isNotEmpty()) showRepositoriesListFragment()
     }
 
-    private fun showRepositoriesListFragment(result: VPRawRepositories) {
-        navigator.showGitHubRepositoriesListFragment(result)
+    private fun showRepositoriesListFragment() {
+        navigator.showGitHubRepositoriesListFragment()
     }
 
     private fun showError(errorMessage: String?) {

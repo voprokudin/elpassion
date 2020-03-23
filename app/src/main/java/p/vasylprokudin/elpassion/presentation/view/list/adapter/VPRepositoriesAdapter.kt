@@ -35,11 +35,6 @@ class VPRepositoriesAdapter : ListAdapter<VPRawItem, VPRepositoriesAdapter.VPVie
         holder.bind(getItem(position))
     }
 
-//    fun updateList(listItems: List<VPListItem>) {
-//        items = listItems
-//        notifyDataSetChanged()
-//    }
-
     inner class VPViewHolder(
         private val view: View,
         private val itemsClickedListener: VPRepositoryClickedListener
