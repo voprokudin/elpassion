@@ -43,12 +43,19 @@ class VPGitHubRepositoriesListFragment : VPFragment(), VPRepositoryClickedListen
     }
 
     private fun setupView() {
-        repositoryAdapter.repositoryClickedListener = this
+        setToolbarTitle(R.string.vp_toolbar_results)
+        setUpRecyclerView()
+    }
+
+    private fun setUpRecyclerView() {
+        repositoryAdapter.run {
+            repositoryClickedListener = this@VPGitHubRepositoriesListFragment
+            submitList(rawRepository.items)
+        }
         rvRepositories.run {
             visibility = View.VISIBLE
             setHasFixedSize(true)
             adapter = repositoryAdapter
         }
-        repositoryAdapter.submitList(rawRepository.items)
     }
 }

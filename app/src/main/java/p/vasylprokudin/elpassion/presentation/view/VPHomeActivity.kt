@@ -53,6 +53,7 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
     }
 
     private fun setUpView() {
+        setToolbarTitle(R.string.vp_toolbar_search)
         registerConnectivityReceiver()
         setUpSearchView()
     }
