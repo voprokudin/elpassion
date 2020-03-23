@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/vp_margin_medium"
-    android:layout_marginTop="@dimen/vp_margin_small"
     android:layout_marginEnd="@dimen/vp_margin_medium"
-    android:layout_marginBottom="@dimen/vp_margin_medium"
     android:hint="@string/vp_search_hint"
     app:layout_constraintTop_toBottomOf="@+id/toolbarContainer"
     app:layout_scrollFlags="scroll|enterAlwaysCollapsed">

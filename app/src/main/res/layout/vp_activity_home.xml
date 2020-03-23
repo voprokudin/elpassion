@@ -1,34 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rootView"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".presentation.view.VPHomeActivity">
 
     <include
-        android:id="@+id/toolbarContainer"
-        layout="@layout/vp_toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        layout="@layout/vp_layout_appbar" />
 
     <include
-        android:id="@+id/searchView"
-        layout="@layout/layout_search"/>
+        layout="@layout/vp_home_content" />
 
-    <include
-        android:id="@+id/emptyView"
-        layout="@layout/vp_layout_empty_view"
-        android:visibility="gone"/>
-
-   <FrameLayout
-       android:id="@+id/fragmentContainer"
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       app:layout_constraintTop_toBottomOf="@+id/toolbarContainer"
-       app:layout_constraintBottom_toBottomOf="parent"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -7,6 +7,7 @@ import p.vasylprokudin.elpassion.data.repository.VPGitHubRepositoriesRemoteRepos
 import p.vasylprokudin.elpassion.data.rest.VPGitHubRepositoriesService
 import p.vasylprokudin.elpassion.domain.repository.VPGitHubRepositoriesRemoteRepository
 import p.vasylprokudin.elpassion.presentation.navigation.VPGitHubRepositoriesNavigator
+import p.vasylprokudin.elpassion.presentation.view.list.adapter.VPRepositoriesAdapter
 import p.vasylprokudin.elpassion.util.fragment.VPFragmentUtil
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -43,4 +44,7 @@ class VPApplicationModule {
         activity: VPActivity,
         fragmentUtil: VPFragmentUtil
     ): VPGitHubRepositoriesNavigator = VPGitHubRepositoriesNavigator(activity, fragmentUtil)
+
+    @Provides
+    internal fun provideRepositoriesAdapter() : VPRepositoriesAdapter = VPRepositoriesAdapter()
 }

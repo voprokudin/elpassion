@@ -3,14 +3,13 @@ package p.vasylprokudin.elpassion.presentation.view
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.layout_search.etSearch
-import kotlinx.android.synthetic.main.vp_activity_home.searchView
-import kotlinx.android.synthetic.main.vp_activity_home.emptyView
+import kotlinx.android.synthetic.main.vp_home_content.searchView
+import kotlinx.android.synthetic.main.vp_home_content.emptyView
 import p.vasylprokudin.elpassion.R
 import p.vasylprokudin.elpassion.base.VPActivity
 import p.vasylprokudin.elpassion.data.model.VPRawRepositories
@@ -96,7 +95,7 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
     }
 
     private fun showRepositoriesListFragment(result: VPRawRepositories) {
-        navigator.showGitHubRepositoriesListFragment()
+        navigator.showGitHubRepositoriesListFragment(result)
     }
 
     private fun showError(errorMessage: String?) {

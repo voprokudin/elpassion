@@ -22,6 +22,12 @@
 
     <style name="VPTextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"/>
 
+    <style name="Widget.AppTheme.AppBar" parent="@style/Widget.Design.AppBarLayout" />
+
+    <style name="VPToolbarStyle">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
 <!--    &lt;!&ndash; Buttons &ndash;&gt;-->
 <!--    <style name="Button" parent="@style/Widget.AppCompat.Button">-->
 <!--        <item name="android:layout_height">@dimen/vp_default_button_height</item>-->

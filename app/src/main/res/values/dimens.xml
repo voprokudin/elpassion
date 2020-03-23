@@ -13,6 +13,8 @@
     <dimen name="vp_margin_mini">2dp</dimen>
     <dimen name="vp_margin_none">0dp</dimen>
 
+    <dimen name="vp_thumb_size">64dp</dimen>
+
     <dimen name="vp_text_size_medium">16sp</dimen>
     <dimen name="vp_text_size_large">18sp</dimen>
 
