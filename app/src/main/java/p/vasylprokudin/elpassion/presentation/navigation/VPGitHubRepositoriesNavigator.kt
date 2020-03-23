@@ -7,6 +7,7 @@ import p.vasylprokudin.elpassion.data.model.VPRawRepositories
 import p.vasylprokudin.elpassion.presentation.view.VPGitHubRepositoriesDetailFragment
 import p.vasylprokudin.elpassion.presentation.view.VPGitHubRepositoriesListFragment
 import p.vasylprokudin.elpassion.util.fragment.VPFragmentUtil
+import p.vasylprokudin.elpassion.data.model.VPRawRepositories.VPRawItem
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -34,12 +35,12 @@ class VPGitHubRepositoriesNavigator
         )
     }
 
-    fun showGitHubRepositoriesDetailsFragment(productCode: String) {
+    fun showGitHubRepositoriesDetailsFragment(repository: VPRawItem) {
         if (isFragmentAlreadyShown<VPGitHubRepositoriesDetailFragment>()) return
 
         fragmentUtil.replaceFragmentAllowingStateLoss(
             fragmentManager = fragmentManager,
-            fragment = VPGitHubRepositoriesDetailFragment.newInstance(),
+            fragment = VPGitHubRepositoriesDetailFragment.newInstance(repository),
             containerViewId = FRAGMENT_CONTAINER,
             addToBackStack = true
         )

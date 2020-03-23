@@ -40,14 +40,16 @@ class VPGitHubRepositoriesListFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupViewModel()
-        setupView()
+        setUpToolbar()
+        setUpViewModel()
+        setUpView()
     }
 
     override fun onRepositoryRowClicked(repository: VPRawItem) {
+        navigator.showGitHubRepositoriesDetailsFragment(repository)
     }
 
-    private fun setupViewModel() {
+    private fun setUpViewModel() {
         activityViewModel.repositoriesInfoList.observe(this, Observer { updateRepositoryAdapterBySearchResults(it) })
     }
 
@@ -58,7 +60,12 @@ class VPGitHubRepositoriesListFragment :
         }
     }
 
-    private fun setupView() {
+    private fun setUpToolbar() {
+        setToolbarNavigationIcon(null)
+        setOnToolbarNavigateUp(enabled = false)
+    }
+
+    private fun setUpView() {
         setToolbarTitle(R.string.vp_toolbar_results)
         setUpRecyclerView()
     }

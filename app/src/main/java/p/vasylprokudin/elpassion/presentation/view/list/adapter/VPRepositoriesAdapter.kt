@@ -45,7 +45,7 @@ class VPRepositoriesAdapter : ListAdapter<VPRawItem, VPRepositoriesAdapter.VPVie
                 .load(item.owner.avatar_url)
                 .into(ivThumb)
             tvRepositoryTitle.text = item.name
-            tvAlbumTitle.text = item.description
+            tvUsername.text = item.description
             setOnClickListener { itemsClickedListener.onRepositoryRowClicked(item) }
         }
     }

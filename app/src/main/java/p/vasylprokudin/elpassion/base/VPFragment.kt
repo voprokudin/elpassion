@@ -31,8 +31,16 @@ abstract class VPFragment : DaggerFragment() {
         vpActivity().setToolbarNavigationIcon(iconResId)
     }
 
+    fun setOnToolbarNavigateUp(enabled: Boolean) {
+        vpActivity().setOnToolbarNavigateUp(enabled)
+    }
+
     fun setToolbarTitle(@StringRes titleId: Int) {
         vpActivity().setToolbarTitle(titleId)
+    }
+
+    fun setToolbarTitle(title: String) {
+        vpActivity().setToolbarTitle(title)
     }
 
     fun vpActivity(): VPActivity = (activity as VPActivity)

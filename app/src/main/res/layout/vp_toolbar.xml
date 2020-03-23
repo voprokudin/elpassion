@@ -8,7 +8,7 @@
     android:background="@color/colorPrimary"
     android:elevation="4dp"
     android:fitsSystemWindows="true"
-    app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+    app:layout_scrollFlags="scroll|enterAlways">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

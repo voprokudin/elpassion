@@ -5,7 +5,7 @@ class C {
     interface BundleArgs {
         companion object {
 
-            const val REPOSITORIES = "repositories"
+            const val REPOSITORY = "repository"
         }
     }
 }

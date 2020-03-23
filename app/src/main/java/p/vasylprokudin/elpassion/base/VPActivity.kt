@@ -15,24 +15,8 @@ abstract class VPActivity : DaggerAppCompatActivity() {
         initViews()
     }
 
-    private fun initViews() {
-        initActionBar()
-    }
-
-    private fun initActionBar() {
-        setSupportActionBar(toolbar)
-//        setToolbarNavigationIcon(R.drawable.ic_back)
-//        toolbar?.setNavigationOnClickListener { onToolbarNavigateUp() }
-        configureActionBar(supportActionBar)
-        progressBarVisibility(visible = false)
-    }
-
-    private fun configureActionBar(actionBar: ActionBar?) {
-        actionBar?.setDisplayShowTitleEnabled(true)
-    }
-
-    private fun onToolbarNavigateUp() {
-        onBackPressed()
+    fun setOnToolbarNavigateUp(enabled: Boolean) {
+        if (enabled) toolbar?.setNavigationOnClickListener { onToolbarNavigateUp() }
     }
 
     fun progressBarVisibility(visible: Boolean) {
@@ -45,5 +29,29 @@ abstract class VPActivity : DaggerAppCompatActivity() {
 
     fun setToolbarTitle(@StringRes titleId: Int) {
         supportActionBar?.setTitle(titleId)
+    }
+
+    fun setToolbarTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
+    private fun initViews() {
+        initActionBar()
+    }
+
+    private fun initActionBar() {
+        setSupportActionBar(toolbar)
+        setToolbarNavigationIcon(null)
+        setOnToolbarNavigateUp(enabled = false)
+        configureActionBar(supportActionBar)
+        progressBarVisibility(visible = false)
+    }
+
+    private fun configureActionBar(actionBar: ActionBar?) {
+        actionBar?.setDisplayShowTitleEnabled(true)
+    }
+
+    private fun onToolbarNavigateUp() {
+        onBackPressed()
     }
 }
