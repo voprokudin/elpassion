@@ -9,6 +9,8 @@ import p.vasylprokudin.elpassion.R
 import p.vasylprokudin.elpassion.base.VPFragment
 import p.vasylprokudin.elpassion.data.model.VPRawRepositories.VPRawItem
 import p.vasylprokudin.elpassion.extensions.argNotNull
+import p.vasylprokudin.elpassion.presentation.navigation.VPGitHubRepositoriesNavigator
+import javax.inject.Inject
 
 class VPGitHubRepositoriesDetailFragment : VPFragment() {
 
@@ -23,6 +25,9 @@ class VPGitHubRepositoriesDetailFragment : VPFragment() {
             return fragment
         }
     }
+
+    @Inject
+    lateinit var navigator: VPGitHubRepositoriesNavigator
 
     private val repository: VPRawItem by argNotNull(C.BundleArgs.REPOSITORY)
 

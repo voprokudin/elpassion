@@ -46,5 +46,11 @@ class VPGitHubRepositoriesNavigator
         )
     }
 
-    private inline fun <reified T> isFragmentAlreadyShown() = fragmentUtil.findFragment(fragmentManager, FRAGMENT_CONTAINER) is T
+    fun clearBackStack() {
+        fragmentManager.popBackStack()
+    }
+
+    fun isAnyFragmentVisible(): Boolean = fragmentUtil.findFragment(fragmentManager, FRAGMENT_CONTAINER) != null
+
+    internal inline fun <reified T> isFragmentAlreadyShown() = fragmentUtil.findFragment(fragmentManager, FRAGMENT_CONTAINER) is T
 }

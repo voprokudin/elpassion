@@ -60,7 +60,7 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
 
     private fun setUpSearchView() {
         etSearch.setOnEditorActionListener { v, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
+            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT) {
                 val searchQuery = v.text.toString().trim()
                 if (searchQuery.isNotEmpty()) maybeFetchRepositories(searchQuery)
             }
@@ -78,10 +78,12 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
     }
 
     private fun setUpViewAvailability(enabled: Boolean) {
-        enabled.let {
-            searchView.isEnabled = it
-            emptyView.visibility = it.toGoneVisible()
-        }
+        searchView.isEnabled = enabled
+        setUpEmptyViewAvailability(enabled)
+    }
+
+    private fun setUpEmptyViewAvailability(enabled: Boolean) {
+        if (!navigator.isAnyFragmentVisible()) emptyView.visibility = enabled.toGoneVisible()
     }
 
     private fun disableView() {
@@ -96,7 +98,12 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
     }
 
     private fun showRepositoriesListFragment() {
+        maybeClearBackStack()
         navigator.showGitHubRepositoriesListFragment()
+    }
+
+    private fun maybeClearBackStack() {
+        if (navigator.isFragmentAlreadyShown<VPGitHubRepositoriesDetailFragment>()) navigator.clearBackStack()
     }
 
     private fun showError(errorMessage: String?) {

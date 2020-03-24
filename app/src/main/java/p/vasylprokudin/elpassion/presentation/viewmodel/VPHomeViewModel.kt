@@ -33,6 +33,7 @@ class VPHomeViewModel
 
     internal inner class GetGitHubRepositoriesObserver : VPEmptySingleObserver<VPRawRepositories>() {
         override fun onSuccess(result: VPRawRepositories) {
+            println(result.items.size)
             mutableRepositoriesInfoList.value = result
             mutableScreenState.value = ScreenState.MaybeShowRepositoriesListFragment(result)
         }
