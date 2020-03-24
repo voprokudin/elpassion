@@ -53,10 +53,10 @@ class VPGitHubRepositoriesListFragment :
         activityViewModel.repositoriesInfoList.observe(this, Observer { updateRepositoryAdapterBySearchResults(it) })
     }
 
-    private fun updateRepositoryAdapterBySearchResults(result: VPRawRepositories?) {
+    private fun updateRepositoryAdapterBySearchResults(result: ArrayList<VPRawItem>) {
         repositoryAdapter.run {
             repositoryClickedListener = this@VPGitHubRepositoriesListFragment
-            submitList(result?.items)
+            submitList(result)
         }
     }
 

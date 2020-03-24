@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.vp_home_content.emptyView
 import kotlinx.android.synthetic.main.vp_layout_appbar.offlineMode
 import p.vasylprokudin.elpassion.R
 import p.vasylprokudin.elpassion.base.VPActivity
-import p.vasylprokudin.elpassion.data.model.VPRawRepositories
+import p.vasylprokudin.elpassion.data.model.VPRawRepositories.VPRawItem
 import p.vasylprokudin.elpassion.extensions.obtainViewModel
 import p.vasylprokudin.elpassion.extensions.toGoneVisible
 import p.vasylprokudin.elpassion.extensions.toVisibleGone
@@ -94,8 +94,7 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
         progressBarVisibility(visible = false)
     }
 
-    private fun maybeShowRepositoriesListFragment(result: VPRawRepositories) {
-        val repositories = result.items
+    private fun maybeShowRepositoriesListFragment(repositories: ArrayList<VPRawItem>) {
         emptyView.visibility = repositories.isEmpty().toVisibleGone()
         progressBarVisibility(visible = false)
         if (repositories.isNotEmpty()) showRepositoriesListFragment()

@@ -3,7 +3,6 @@ package p.vasylprokudin.elpassion.presentation.navigation
 import androidx.fragment.app.FragmentManager
 import p.vasylprokudin.elpassion.R
 import p.vasylprokudin.elpassion.base.VPActivity
-import p.vasylprokudin.elpassion.data.model.VPRawRepositories
 import p.vasylprokudin.elpassion.presentation.view.VPGitHubRepositoriesDetailFragment
 import p.vasylprokudin.elpassion.presentation.view.VPGitHubRepositoriesListFragment
 import p.vasylprokudin.elpassion.util.fragment.VPFragmentUtil

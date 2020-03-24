@@ -10,4 +10,5 @@ class VPGitHubRepositoriesRemoteRepositoryImpl
 ) : VPGitHubRepositoriesRemoteRepository {
 
     override fun getRepositories(query: String) = gitHubRepositoriesService.searchRepositories(query)
+        .map { it.items }
 }
