@@ -3,9 +3,11 @@ package p.vasylprokudin.elpassion.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import p.vasylprokudin.elpassion.C
 import p.vasylprokudin.elpassion.data.model.VPRawRepositories.VPRawItem
 import p.vasylprokudin.elpassion.domain.interactor.VPGetRepositoriesUseCase
 import p.vasylprokudin.elpassion.domain.interactor.base.VPEmptySingleObserver
+import p.vasylprokudin.elpassion.domain.model.VPSearchParams
 import p.vasylprokudin.elpassion.util.network.VPNetworkStateProvider
 import javax.inject.Inject
 
@@ -23,12 +25,21 @@ class VPHomeViewModel
 
     private val mutableRepositoriesInfoList = MutableLiveData<ArrayList<VPRawItem>>()
 
-    fun maybeFetchRepositories(query: String) {
-        if (networkStateProvider.isNetworkConnected()) fetchRepositories(query) else mutableScreenState.value = ScreenState.DisableView
+    internal var searchParams: VPSearchParams = VPSearchParams(
+        query = C.Strings.EMPTY,
+        page = C.Integer.ONE
+    )
+
+    fun updateSearchParams(searchParams: VPSearchParams) {
+        this.searchParams = searchParams
     }
 
-    private fun fetchRepositories(query: String) {
-        getRepositoriesUseCase.execute(observer = GetGitHubRepositoriesObserver(), params = query)
+    fun maybeFetchRepositories() {
+        if (networkStateProvider.isNetworkConnected()) fetchRepositories() else mutableScreenState.value = ScreenState.DisableView
+    }
+
+    private fun fetchRepositories() {
+        getRepositoriesUseCase.execute(observer = GetGitHubRepositoriesObserver(), params = searchParams)
     }
 
     internal inner class GetGitHubRepositoriesObserver : VPEmptySingleObserver<ArrayList<VPRawItem>>() {

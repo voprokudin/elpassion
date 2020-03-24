@@ -11,9 +11,11 @@ import kotlinx.android.synthetic.main.layout_search.etSearch
 import kotlinx.android.synthetic.main.vp_home_content.searchView
 import kotlinx.android.synthetic.main.vp_home_content.emptyView
 import kotlinx.android.synthetic.main.vp_layout_appbar.offlineMode
+import p.vasylprokudin.elpassion.C
 import p.vasylprokudin.elpassion.R
 import p.vasylprokudin.elpassion.base.VPActivity
 import p.vasylprokudin.elpassion.data.model.VPRawRepositories.VPRawItem
+import p.vasylprokudin.elpassion.domain.model.VPSearchParams
 import p.vasylprokudin.elpassion.extensions.obtainViewModel
 import p.vasylprokudin.elpassion.extensions.toGoneVisible
 import p.vasylprokudin.elpassion.extensions.toVisibleGone
@@ -63,19 +65,26 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
         etSearch.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT) {
                 val searchQuery = v.text.toString().trim()
-                if (searchQuery.isNotEmpty()) maybeFetchRepositories(searchQuery)
+                val searchParams = createSearchParams(searchQuery)
+                viewModel.updateSearchParams(searchParams)
+                if (viewModel.searchParams.query.isNotEmpty()) maybeFetchRepositories()
             }
             false
         }
     }
 
+    private fun createSearchParams(searchQuery: String) = VPSearchParams(
+        query = searchQuery,
+        page = C.Integer.ONE
+    )
+
     private fun registerConnectivityReceiver() {
         registerReceiver(VPConnectivityReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
 
-    private fun maybeFetchRepositories(query: String) {
+    private fun maybeFetchRepositories() {
         progressBarVisibility(visible = true)
-        viewModel.maybeFetchRepositories(query)
+        viewModel.maybeFetchRepositories()
     }
 
     private fun setUpViewAvailability(enabled: Boolean) {
@@ -114,7 +123,7 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.vp_cant_download_dialog_title)
             .setMessage(getString(R.string.vp_cant_download_dialog_message, errorMessage))
-            .setPositiveButton(R.string.vp_cant_download_dialog_btn_positive) { _, _ ->  maybeFetchRepositories(etSearch.text.toString())}
+            .setPositiveButton(R.string.vp_cant_download_dialog_btn_positive) { _, _ ->  maybeFetchRepositories()}
             .setNegativeButton(R.string.vp_cant_download_dialog_btn_negative) { _, _ -> finish() }
             .create()
             .apply { setCanceledOnTouchOutside(false) }

@@ -8,4 +8,18 @@ class C {
             const val REPOSITORY = "repository"
         }
     }
+
+    interface Strings {
+        companion object {
+
+            const val EMPTY = ""
+        }
+    }
+
+    interface Integer {
+        companion object {
+
+            const val ONE = 1
+        }
+    }
 }
