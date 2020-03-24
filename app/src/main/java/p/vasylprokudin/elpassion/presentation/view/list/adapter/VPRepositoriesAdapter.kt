@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.vp_list_item.view.*
+import kotlinx.android.synthetic.main.vp_list_item.view.tvRepositoryTitle
+import kotlinx.android.synthetic.main.vp_list_item.view.tvUsername
+import kotlinx.android.synthetic.main.vp_list_item.view.ivThumb
 import p.vasylprokudin.elpassion.R
 import p.vasylprokudin.elpassion.presentation.view.list.listener.VPRepositoryClickedListener
 import p.vasylprokudin.elpassion.data.model.VPRawRepositories.VPRawItem

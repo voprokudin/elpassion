@@ -10,6 +10,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.layout_search.etSearch
 import kotlinx.android.synthetic.main.vp_home_content.searchView
 import kotlinx.android.synthetic.main.vp_home_content.emptyView
+import kotlinx.android.synthetic.main.vp_layout_appbar.offlineMode
 import p.vasylprokudin.elpassion.R
 import p.vasylprokudin.elpassion.base.VPActivity
 import p.vasylprokudin.elpassion.data.model.VPRawRepositories
@@ -78,7 +79,10 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
     }
 
     private fun setUpViewAvailability(enabled: Boolean) {
-        searchView.isEnabled = enabled
+        enabled.also {
+            offlineMode.visibility = it.toGoneVisible()
+            searchView.isEnabled = it
+        }
         setUpEmptyViewAvailability(enabled)
     }
 

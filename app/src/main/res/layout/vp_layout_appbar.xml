@@ -12,4 +12,8 @@
         android:id="@+id/toolbarContainer"
         layout="@layout/vp_toolbar"/>
 
+    <include
+        android:id="@+id/offlineMode"
+        layout="@layout/vp_layout_banner"/>
+
 </com.google.android.material.appbar.AppBarLayout>

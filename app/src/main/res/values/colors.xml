@@ -7,4 +7,5 @@
     <color name="vp_progress_bar_color">@color/light_accent_color</color>
     <color name="status_bar_bg">@color/light_surface_color</color>
     <color name="toolbar_bg">@color/light_surface_color</color>
+    <color name="vp_offline_mode_color">@color/light_accent_color</color>
 </resources>
