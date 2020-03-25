@@ -25,8 +25,7 @@ class VPFragmentUtil
         transaction.commitAllowingStateLoss()
     }
 
-    fun findFragment(fragmentManager: FragmentManager, @IdRes fragmentContainerId: Int): Fragment?
-            = fragmentManager.findFragmentById(fragmentContainerId)
+    fun findFragment(fragmentManager: FragmentManager, @IdRes fragmentContainerId: Int): Fragment? = fragmentManager.findFragmentById(fragmentContainerId)
 
     fun removeFragment(fragmentManager: FragmentManager, fragment: Fragment) {
         fragmentManager

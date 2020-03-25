@@ -23,4 +23,13 @@
         app:layout_constraintTop_toBottomOf="@+id/searchView"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <ProgressBar
+        android:id="@+id/progressBarLoadMore"
+        android:layout_width="@dimen/vp_default_progress_bar_height"
+        android:layout_height="@dimen/vp_default_progress_bar_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="gone"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

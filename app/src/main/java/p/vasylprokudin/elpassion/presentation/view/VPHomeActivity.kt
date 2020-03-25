@@ -11,10 +11,9 @@ import kotlinx.android.synthetic.main.layout_search.etSearch
 import kotlinx.android.synthetic.main.vp_home_content.searchView
 import kotlinx.android.synthetic.main.vp_home_content.emptyView
 import kotlinx.android.synthetic.main.vp_layout_appbar.offlineMode
-import p.vasylprokudin.elpassion.C
+import p.vasylprokudin.elpassion.Constants
 import p.vasylprokudin.elpassion.R
 import p.vasylprokudin.elpassion.base.VPActivity
-import p.vasylprokudin.elpassion.data.model.VPRawRepositories.VPRawItem
 import p.vasylprokudin.elpassion.domain.model.VPSearchParams
 import p.vasylprokudin.elpassion.extensions.obtainViewModel
 import p.vasylprokudin.elpassion.extensions.toGoneVisible
@@ -22,6 +21,7 @@ import p.vasylprokudin.elpassion.extensions.toVisibleGone
 import p.vasylprokudin.elpassion.presentation.navigation.VPGitHubRepositoriesNavigator
 import p.vasylprokudin.elpassion.presentation.viewmodel.VPHomeViewModel
 import p.vasylprokudin.elpassion.presentation.viewmodel.VPHomeViewModel.ScreenState.DisableView
+import p.vasylprokudin.elpassion.presentation.viewmodel.VPHomeViewModel.ScreenState.LoadMore
 import p.vasylprokudin.elpassion.presentation.viewmodel.VPHomeViewModel.ScreenState.MaybeShowRepositoriesListFragment
 import p.vasylprokudin.elpassion.presentation.viewmodel.VPHomeViewModel.ScreenState.ShowGeneralError
 import p.vasylprokudin.elpassion.util.network.VPConnectivityReceiver
@@ -62,9 +62,10 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
     }
 
     private fun setUpSearchView() {
-        etSearch.setOnEditorActionListener { v, actionId, _ ->
+        etSearch.setOnEditorActionListener { editText, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT) {
-                val searchQuery = v.text.toString().trim()
+                viewModel.clearPreviousSearch()
+                val searchQuery = editText.text.toString().trim()
                 val searchParams = createSearchParams(searchQuery)
                 viewModel.updateSearchParams(searchParams)
                 if (viewModel.searchParams.query.isNotEmpty()) maybeFetchRepositories()
@@ -75,7 +76,7 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
 
     private fun createSearchParams(searchQuery: String) = VPSearchParams(
         query = searchQuery,
-        page = C.Integer.ONE
+        page = Constants.Integer.ONE
     )
 
     private fun registerConnectivityReceiver() {
@@ -84,6 +85,7 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
 
     private fun maybeFetchRepositories() {
         progressBarVisibility(visible = true)
+        progressBarMoreVisibility(visible = true)
         viewModel.maybeFetchRepositories()
     }
 
@@ -101,12 +103,14 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
 
     private fun disableView() {
         progressBarVisibility(visible = false)
+        progressBarMoreVisibility(visible = false)
     }
 
-    private fun maybeShowRepositoriesListFragment(repositories: ArrayList<VPRawItem>) {
-        emptyView.visibility = repositories.isEmpty().toVisibleGone()
+    private fun maybeShowRepositoriesListFragment(isEmptyList: Boolean) {
+        emptyView.visibility = isEmptyList.toVisibleGone()
         progressBarVisibility(visible = false)
-        if (repositories.isNotEmpty()) showRepositoriesListFragment()
+        progressBarMoreVisibility(visible = false)
+        if (!isEmptyList) showRepositoriesListFragment()
     }
 
     private fun showRepositoriesListFragment() {
@@ -120,10 +124,11 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
 
     private fun showError(errorMessage: String?) {
         progressBarVisibility(visible = false)
+        progressBarMoreVisibility(visible = false)
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.vp_cant_download_dialog_title)
             .setMessage(getString(R.string.vp_cant_download_dialog_message, errorMessage))
-            .setPositiveButton(R.string.vp_cant_download_dialog_btn_positive) { _, _ ->  maybeFetchRepositories()}
+            .setPositiveButton(R.string.vp_cant_download_dialog_btn_positive) { _, _ -> maybeFetchRepositories() }
             .setNegativeButton(R.string.vp_cant_download_dialog_btn_negative) { _, _ -> finish() }
             .create()
             .apply { setCanceledOnTouchOutside(false) }
@@ -140,7 +145,8 @@ class VPHomeActivity : VPActivity(), VPConnectivityReceiverListener {
 
             when (screenAction) {
                 DisableView -> disableView()
-                is MaybeShowRepositoriesListFragment -> maybeShowRepositoriesListFragment(screenAction.result)
+                LoadMore -> maybeFetchRepositories()
+                is MaybeShowRepositoriesListFragment -> maybeShowRepositoriesListFragment(screenAction.isEmptyList)
                 is ShowGeneralError -> showError(screenAction.errorMessage)
             }
         }

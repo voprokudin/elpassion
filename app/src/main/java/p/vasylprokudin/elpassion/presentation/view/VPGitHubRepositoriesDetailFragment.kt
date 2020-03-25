@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.vp_fragment_github_repository_detail.*
-import p.vasylprokudin.elpassion.C
+import p.vasylprokudin.elpassion.Constants
 import p.vasylprokudin.elpassion.R
 import p.vasylprokudin.elpassion.base.VPFragment
 import p.vasylprokudin.elpassion.data.model.VPRawRepositories.VPRawItem
@@ -16,10 +16,10 @@ class VPGitHubRepositoriesDetailFragment : VPFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(repository: VPRawItem) : VPGitHubRepositoriesDetailFragment {
+        fun newInstance(repository: VPRawItem): VPGitHubRepositoriesDetailFragment {
             val fragment = VPGitHubRepositoriesDetailFragment()
             val args = Bundle().apply {
-                putParcelable(C.BundleArgs.REPOSITORY, repository)
+                putParcelable(Constants.BundleArgs.REPOSITORY, repository)
             }
             fragment.arguments = args
             return fragment
@@ -29,7 +29,7 @@ class VPGitHubRepositoriesDetailFragment : VPFragment() {
     @Inject
     lateinit var navigator: VPGitHubRepositoriesNavigator
 
-    private val repository: VPRawItem by argNotNull(C.BundleArgs.REPOSITORY)
+    private val repository: VPRawItem by argNotNull(Constants.BundleArgs.REPOSITORY)
 
     override val getLayoutResId: Int = R.layout.vp_fragment_github_repository_detail
 

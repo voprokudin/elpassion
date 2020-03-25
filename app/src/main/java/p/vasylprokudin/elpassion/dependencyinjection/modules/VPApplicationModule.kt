@@ -46,5 +46,5 @@ class VPApplicationModule {
     ): VPGitHubRepositoriesNavigator = VPGitHubRepositoriesNavigator(activity, fragmentUtil)
 
     @Provides
-    internal fun provideRepositoriesAdapter() : VPRepositoriesAdapter = VPRepositoriesAdapter()
+    internal fun provideRepositoriesAdapter(): VPRepositoriesAdapter = VPRepositoriesAdapter()
 }

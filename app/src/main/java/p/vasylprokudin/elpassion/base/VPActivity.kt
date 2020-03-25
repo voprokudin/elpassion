@@ -5,6 +5,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBar
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.vp_home_content.progressBarLoadMore
 import kotlinx.android.synthetic.main.vp_toolbar.toolbar
 import kotlinx.android.synthetic.main.vp_toolbar.toolbarProgressBar
 
@@ -21,6 +22,10 @@ abstract class VPActivity : DaggerAppCompatActivity() {
 
     fun progressBarVisibility(visible: Boolean) {
         toolbarProgressBar.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
+    fun progressBarMoreVisibility(visible: Boolean) {
+        progressBarLoadMore.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
     fun setToolbarNavigationIcon(@DrawableRes iconResId: Int?) {

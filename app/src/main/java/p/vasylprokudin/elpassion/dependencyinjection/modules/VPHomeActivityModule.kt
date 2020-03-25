@@ -9,5 +9,5 @@ import p.vasylprokudin.elpassion.presentation.view.VPHomeActivity
 abstract class VPHomeActivityModule {
 
     @Binds
-    abstract fun providesActivity(activity: VPHomeActivity) : VPActivity
+    abstract fun providesActivity(activity: VPHomeActivity): VPActivity
 }
